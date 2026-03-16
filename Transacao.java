@@ -1,15 +1,20 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Transacao {
     private String tipo;
     private double valor;
-    private Date data;
+    private String date;
     private String detalhes;
 
-    public Transacao(String tipo, double valor, Date data, String detalhes){
+    private Date data = new Date();
+    private SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    private String dateFormat = formato.format(data);
+
+    public Transacao(String tipo, double valor, String detalhes){
         this.tipo = tipo;
         this.valor = valor;
-        this.data = data;
+        this.date = dateFormat;
         this.detalhes = detalhes;
     }
 
@@ -21,8 +26,8 @@ public class Transacao {
         return this.valor;
     }
 
-    public Date getData(){
-        return data;
+    public String getData(){
+        return date;
     }
 
     public String getDetalhes(){

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Conta {
     private static int count = 0;
@@ -45,7 +44,7 @@ public class Conta {
         if(valor <= saldo){
             this.saldo -= valor;
             if(tipo == "SAQUE") {
-                transacoes.add(new Transacao("SAQUE", valor, new Date(), ""));
+                transacoes.add(new Transacao("SAQUE", valor, ""));
             }
             return true;
         }
@@ -55,7 +54,7 @@ public class Conta {
     public boolean depositar(double valor){
         if(valor > 0){
             this.saldo += valor;
-            transacoes.add(new Transacao("DEPOSÍTO", valor, new Date(),""));
+            transacoes.add(new Transacao("DEPOSÍTO", valor,""));
             return true;
         }
         return false;
@@ -69,7 +68,7 @@ public class Conta {
         tipo = "TRANSFERENCIA";
         if(this.sacar(valor, this.tipo)) {
             outraConta.depositar(valor);
-            transacoes.add(new Transacao("TRANSFERÊNCIA", valor, new Date(), "Destino: " + outraConta.cliente.getNome()));
+            transacoes.add(new Transacao("TRANSFERÊNCIA", valor, "Tranferência para " + outraConta.cliente.getNome()));
             return true;
         }
         return false;
