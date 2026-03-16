@@ -16,7 +16,7 @@ public class Principal {
         String successMessage = "Operação realizada com sucesso!";
         String errorMessage = "Erro ao realizar operação!";
 
-        System.out.println("Bem-vindo ao Banco-FIP");
+        System.out.println("\nBem-vindo ao Banco-FIP");
         
         do{
 
@@ -32,13 +32,13 @@ public class Principal {
 
             switch(option){
                 case 1:
-                    System.out.println("\n\n----SAQUE----\n");
+                    System.out.println("\n----SAQUE----\n");
 
                     System.out.println("Saldo disponível: " + minhaConta.getSaldo());
                     System.out.print("Valor: ");
                     valor = sc.nextDouble();
 
-                    if(minhaConta.sacar(valor)) {
+                    if(minhaConta.sacar(valor, "SAQUE")) {
                         System.out.println(successMessage);
                     }
                     else {
@@ -48,7 +48,7 @@ public class Principal {
                     break;
                 case 2:
                     // DEPÓSITO
-                    System.out.println("\n\n----DEPÓSITO----\n");
+                    System.out.println("\n----DEPÓSITO----\n");
 
                     System.out.print("Valor: ");
                     valor = sc.nextDouble();
@@ -62,7 +62,7 @@ public class Principal {
                     break;
                 case 3:
                     // TRANSFERIR
-                    System.out.println("\n\n----TRANSFERÊNCIA----\n");
+                    System.out.println("\n----TRANSFERÊNCIA----\n");
 
                     System.out.print("Valor: ");
                     valor = sc.nextDouble();
@@ -77,7 +77,7 @@ public class Principal {
                     break;
                 case 4:
                     // RESUMO
-                    System.out.println("\n\n----RESUMO DA CONTA----\n");
+                    System.out.println("\n----RESUMO DA CONTA----\n");
                     String resumo = minhaConta.getResumo();
                     System.out.println(resumo);
                     break;

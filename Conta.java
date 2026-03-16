@@ -3,6 +3,7 @@ import java.util.Date;
 
 public class Conta {
     private static int count = 0;
+    private String tipo = "";
 
     // atributos
     // private, public, default (intermediário entre public e private)
@@ -40,10 +41,12 @@ public class Conta {
     }
 
     // métodos
-    public boolean sacar(double valor){
+    public boolean sacar(double valor, String tipo){
         if(valor <= saldo){
             this.saldo -= valor;
-            transacoes.add(new Transacao("SAQUE", valor, new Date(), ""));
+            if(tipo == "SAQUE") {
+                transacoes.add(new Transacao("SAQUE", valor, new Date(), ""));
+            }
             return true;
         }
         return false;
@@ -63,7 +66,8 @@ public class Conta {
     }
 
     public boolean transferir(Conta outraConta, double valor){
-        if(this.sacar(valor)){
+        tipo = "TRANSFERENCIA";
+        if(this.sacar(valor, this.tipo)) {
             outraConta.depositar(valor);
             transacoes.add(new Transacao("TRANSFERÊNCIA", valor, new Date(), "Destino: " + outraConta.cliente.getNome()));
             return true;
