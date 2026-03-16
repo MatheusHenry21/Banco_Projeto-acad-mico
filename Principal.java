@@ -16,11 +16,11 @@ public class Principal {
         String successMessage = "Operação realizada com sucesso!";
         String errorMessage = "Erro ao realizar operação!";
 
-        System.out.println("Bem-vindo ao Banco-FIP\n");
+        System.out.println("Bem-vindo ao Banco-FIP");
         
         do{
 
-            System.out.println("----MENU----");
+            System.out.println("\n----MENU----");
             System.out.println("1 - SAQUE");
             System.out.println("2 - DEPÓSITO");
             System.out.println("3 - TRANSFERÊNCIA");
@@ -34,6 +34,7 @@ public class Principal {
                 case 1:
                     System.out.println("\n\n----SAQUE----\n");
 
+                    System.out.println("Saldo disponível: " + minhaConta.getSaldo());
                     System.out.print("Valor: ");
                     valor = sc.nextDouble();
 

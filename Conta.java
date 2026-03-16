@@ -52,7 +52,7 @@ public class Conta {
     public boolean depositar(double valor){
         if(valor > 0){
             this.saldo += valor;
-            // guardar transacao
+            transacoes.add(new Transacao("DEPOSÍTO", valor, new Date(),""));
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public class Conta {
     public boolean transferir(Conta outraConta, double valor){
         if(this.sacar(valor)){
             outraConta.depositar(valor);
-            // guardar transacao
+            transacoes.add(new Transacao("TRANSFERÊNCIA", valor, new Date(), "Destino: " + outraConta.cliente.getNome()));
             return true;
         }
         return false;
@@ -76,12 +76,24 @@ public class Conta {
     }
 
     public String getResumo(){
-        String resultado = "";
-        resultado += "Número: " + numero + "\n";
-        resultado += "Saldo: " + saldo + "\n";
-        resultado += "Cliente: " + cliente.getNome() + "\n";
-        // Mostras as operações realizadas na conta
-        // mostrar transações
-        return resultado;
+        String infoCliente = "";
+        String resumo = "";
+
+        infoCliente += "Número: " + numero + "\n";
+        infoCliente += "Saldo: " + saldo + "\n";
+        infoCliente += "Cliente: " + cliente.getNome() + "\n";
+
+        for (Transacao t : transacoes) {
+            resumo += "\n" + "---------------------------" + "\n";
+            resumo += "Tipo: " + t.getTipo() + "\n";
+            resumo += "Valor: " + t.getValor() + "\n";
+            resumo += "Data: " + t.getData() + "\n";
+            resumo += "Detalhes: " + t.getDetalhes() + "\n";
+            resumo += "---------------------------";
+        }
+
+        infoCliente += resumo;
+
+        return infoCliente;
     }
 }
